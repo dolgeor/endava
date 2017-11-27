@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<input type="text" name = "a" id="a"><br><br>
+<select name="operator" id = "operator">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+  <option value="%">%</option>
+</select><br><br>
+<input type="text" name="b" id = "b"><br><br>
+<button onclick="calc()">Calculate</button>
+
+
+
+<h1 id = "demo"></h1>
+<script>
+var results = [];
+class Calculator {
+
+constructor(a,op,b) {
+  this.a = parseInt(a);
+  this.op = op;
+  this.b = parseInt(b);
+  this.res = null;
+}
+
+
+getResult() {
+  switch(this.op) {
+  case '+': this.res = this.a + this.b; break;
+  case '-': this.res = this.a - this.b; break;
+  case '*': this.res = this.a * this.b; break;
+  case '/': this.res = this.a / this.b; break;
+  case '%': this.res = this.a % this.b; break;
+  default : this.res = "error";
+  }
+  return `${this.a} ${this.op} ${this.b} = ${this.res}`;
+}
+
+}
+
+
+	function calc(){
+
+		var a = document.getElementById("a").value;
+		var b = document.getElementById("b").value;
+		var op = document.getElementById("operator").value;
+
+    var s = "<ul>";
+
+		results.push(new Calculator(a,op,b));
+
+		for(i=0; i < results.length; i++) {
+			s +=`<li>${results[i].getResult()}</li>`;
+		}
+		s+="</ul>";
+
+		document.getElementById("demo").innerHTML = s;
+
+	}
+
+
+</script>
+
+</body>
+</html>
